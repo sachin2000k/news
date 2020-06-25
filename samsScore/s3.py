@@ -15,7 +15,7 @@ class SamsResourceError(Exception):
 
   def __str__(self):
     if self.message:
-        return f"{self.message}"
+        return f'{self.message}'
     else:
         return f'Please check all resources'
 
@@ -118,12 +118,15 @@ class s3_manager:
         if isfile('model/trigrams'):
             print("Trigram is Imported")
         else:
-            bucket_name = 'sams-model'
+            bucket_name = 'sams-models'
             try:
                 self.s3.meta.client.download_file(bucket_name,'trigrams','model/trigrams')
                 print("Trigrams Download")
             except:
                 raise SamsResourceError(f"Trigrams is not present in {bucket_name.name}")
+            
+            
+                        
 
     def download_data(self):
         if isfile('data/Domain_info.csv'):

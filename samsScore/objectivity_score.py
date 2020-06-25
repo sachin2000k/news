@@ -22,6 +22,10 @@ class Objective_score() :
             self.l_pipeline = pickle.load(pkl)
             
     def clean_str(self,string):
+        neu = " neutral "
+        #print(type(string))
+        if type(string) != type(neu):
+            string = neu
    
         #print(string)
         string = re.sub(r"^b", "", string)

@@ -17,7 +17,7 @@ from gensim.models.phrases import  Phraser
 
 class FakeScore:
     def __init__(self):
-
+        #model/xgb_pipeline.pkl
         with open('model/fake_tokenizer.pickle', 'rb') as handle:
             self.tokenzs = pickle.load(handle)
         with open('model/model_in_json2.json','r') as f:
@@ -31,6 +31,12 @@ class FakeScore:
         self.fake_score = 0
     
     def clean_str(self,string):
+        neu = " neutral "
+        #print(type(string))
+        if type(string) != type(neu):
+            string = neu
+          
+           
         string = re.sub(r"^b", "", string)
         string = re.sub(r"\\n ", "", string)
         string = re.sub(r"\'s", "", string)
@@ -49,7 +55,7 @@ class FakeScore:
         string = re.sub(r"[0-9]\w+|[0-9]","", string)
         string = re.sub(r"\s{2,}", " ", string)
         #string = ' '.join(Word(word).lemmatize() for word in string.split() if word not in STOPWORDS) # delete stopwors from text
-
+        
         return string.strip()
     
     def preprocessing(self,text):
@@ -80,7 +86,7 @@ class FakeScore:
     def fake_predictor(self, text):
         X_test = self.preprocessing(text)
         fake_score = self.l_model.predict(X_test)
-        print(fake_score)
+        #print(fake_score)
         return fake_score
         
     

@@ -9,7 +9,6 @@ import pandas as pd
 class Bias_Score:
     
     def __init__(self):
-
         self.domain_info = pd.read_csv('data/Domain_info.csv')
         self.tag_score = {' unreliable' : 0,
                              'Conspiracy' : 0.1,
@@ -56,14 +55,14 @@ class Bias_Score:
             t = t[1:-1].split(', ')
             score -= 0.5
         #print(t)
-        for i in range(len(t)):
-            #print(t[i])
-            score += self.tag_score[t[i][1:-1]]
-            #print(t[i])
-            if t[i][1:-1] == 'on':
-                count_None += 1
-        #print(score,count_None)
-        score = score/(len(t)-count_None)
+            for i in range(len(t)):
+                #print(t[i])
+                score += self.tag_score[t[i][1:-1]]
+                #print(t[i])
+                if t[i][1:-1] == 'on':
+                    count_None += 1
+            #print(score,count_None)
+            score = score/(len(t)-count_None)
         if score<0:
             score= 0.0
         return score
