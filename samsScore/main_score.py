@@ -42,7 +42,7 @@ def get_data_from_db():
 
 def credibility_score(data):
     model = News_Credibility()
-    result = model.score(data['title'], data['content'], data['url'], data['source'])
+    result = model.scores(data['title'], data['content'], data['url'], data['source'])
     print(result)
     return result
 
